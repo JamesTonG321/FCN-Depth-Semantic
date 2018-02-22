@@ -151,7 +151,7 @@ class UpProj_Block(nn.Module):
 
 
         Y = Y_flat.view(-1, dim1, dim2, dims[3])
-        Y=Variable(Y.permute(0,3,1,2))
+        Y=Variable(Y.permute(0,3,1,2).contiguous())
 
         if(id==1):
             if BN:
@@ -215,7 +215,7 @@ class Model(nn.Module):
         self.bn5 = nn.BatchNorm2d(38)
         self.dropout = nn.Dropout2d(p=1)
 
-        self.upsample = nn.UpsamplingBilinear2d(size = (480,640))
+        self.upsample = nn.Upsample(size = (480,640), mode='bilinear')
 
     def make_proj_layer(self, block, in_channels, d1, d2, stride = 1, pad=0):
         return block(in_channels, d1, d2, skip=False, stride = stride)

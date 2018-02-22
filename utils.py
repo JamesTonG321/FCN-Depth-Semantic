@@ -61,7 +61,7 @@ def run_epoch(model, loss_fn, loader, optimizer, dtype):
     x_var = Variable(x.type(dtype))
     z_var = Variable(z.type(dtype))
     y_var = Variable(y.type(dtype).long())
-    m = nn.LogSoftmax()
+    m = nn.LogSoftmax(dim=1)
 
     pred_depth,pred_labels = model(x_var,z_var)
     y_var = y_var.squeeze()
