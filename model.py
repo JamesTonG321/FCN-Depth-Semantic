@@ -4,7 +4,6 @@ import torch.nn as nn
 import numpy as np
 from torch.autograd import Variable
 import matplotlib
-import tensorflow as tf
 matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 from PIL import Image
